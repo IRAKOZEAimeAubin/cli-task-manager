@@ -3,22 +3,37 @@ import { readTasks } from "../utils/dbFile.js";
 import sleep from "../utils/sleep.js";
 import chalkColors from "../utils/chalkColors.js";
 
-export async function readAllTasks () {
+export async function readAllTasks ( status ) {
     const spinner = createSpinner( 'Fetching tasks...' );
 
     try {
         const tasks = await readTasks();
+        let filteredTasks = tasks;
+
+        if ( status ) {
+            const normalizedStatus = status.toLowerCase();
+            filteredTasks = tasks.filter( task => task.status === normalizedStatus );
+        }
 
         spinner.start();
         await sleep();
 
-        if ( tasks.length === 0 ) {
+        if ( filteredTasks.length === 0 ) {
+            const message = status
+                ? `No tasks found with status: ${ status }`
+                : 'You do not have any tasks yet!';
+
             spinner.info( {
-                text: chalkColors.info( 'You do not have any tasks yet!' )
+                text: chalkColors.info( message )
             } );
         } else {
-            console.log( chalkColors.title( '\nTasks📝:' ) );
-            tasks.forEach( todo => {
+            const title = status
+                ? `\n${ status.toUpperCase() } Tasks📝:`
+                : '\nTasks📝:';
+
+            console.log( chalkColors.title( title ) );
+
+            filteredTasks.forEach( todo => {
                 let color;
                 if ( todo.status === 'in-progress' ) {
                     color = chalkColors.inProgress;
@@ -28,7 +43,7 @@ export async function readAllTasks () {
                 console.log( color( `${ todo.id }. ${ todo.description } - ${ todo.status.toUpperCase() }` ) );
             } );
             spinner.success( {
-                text: chalkColors.success( `\nSuccessfully fetched ${ tasks.length } task(s)!` )
+                text: chalkColors.success( `\nSuccessfully fetched ${ filteredTasks.length } task(s)!` )
             } );
         }
     } catch ( error ) {

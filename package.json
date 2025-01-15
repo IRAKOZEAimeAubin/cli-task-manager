@@ -2,7 +2,7 @@
   "name": "task-manager-cli",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "exports": "./index.js",
   "type": "module",
   "scripts": {
     "dev": "node --watch index",
@@ -16,5 +16,8 @@
     "commander": "^13.0.0",
     "inquirer": "^12.3.1",
     "nanospinner": "^1.2.2"
+  },
+  "bin": {
+    "task-cli": "index.js"
   }
 }
