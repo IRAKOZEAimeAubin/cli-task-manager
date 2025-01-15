@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import addTasks from "./commands/addTasks.js";
+import deleteTask from "./commands/deleteTask.js";
 import { readAllTasks } from "./commands/readTasks.js";
 import { Command } from "commander";
 
@@ -21,5 +22,11 @@ program
     .description( 'List tasks.' )
     .argument( '[status]', 'Filter tasks by status (todo, in-progress, done)' )
     .action( readAllTasks );
+
+program
+    .command( 'delete' )
+    .description( 'Delete task by ID' )
+    .argument( '[id]', 'Task ID to delete' )
+    .action( deleteTask );
 
 program.parse();
