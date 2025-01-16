@@ -1,6 +1,6 @@
 import inquirer from "inquirer";
 import { createSpinner } from 'nanospinner';
-import dateFormater from "../utils/dateFormatter.js";
+import dateFormatter from "../utils/dateFormatter.js";
 import { readTasks, saveTasks } from "../utils/dbFile.js";
 import chalkColors from "../utils/chalkColors.js";
 import sleep from "../utils/sleep.js";
@@ -25,8 +25,8 @@ const askQuestions = async () => {
             id: todosArray.length + 1,
             ...userResponse,
             status: 'todo',
-            createdAt: dateFormater(),
-            updatedAt: dateFormater(),
+            createdAt: dateFormatter(),
+            updatedAt: dateFormatter(),
         } );
         const confirmQuestion = await inquirer.prompt( [ { name: 'confirm', type: 'confirm', message: 'Do you want to add more tasks?' } ] );
         if ( confirmQuestion.confirm ) {

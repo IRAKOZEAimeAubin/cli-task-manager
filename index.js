@@ -2,6 +2,7 @@
 
 import addTasks from "./commands/addTasks.js";
 import deleteTask from "./commands/deleteTask.js";
+import { updateTaskStatus } from "./commands/editTask.js";
 import { readAllTasks } from "./commands/readTasks.js";
 import { Command } from "commander";
 
@@ -28,5 +29,17 @@ program
     .description( 'Delete task by ID' )
     .argument( '[id]', 'Task ID to delete' )
     .action( deleteTask );
+
+program
+    .command( 'mark-in-progress' )
+    .description( 'Mark task as in-progress' )
+    .argument( '[id]', 'Task ID' )
+    .action( id => updateTaskStatus( id, 'in-progress' ) );
+
+program
+    .command( 'mark-done' )
+    .description( 'Mark task as done' )
+    .argument( '[id]', 'Task ID' )
+    .action( id => updateTaskStatus( id, 'done' ) );
 
 program.parse();
