@@ -1,4 +1,4 @@
-const dateFormater = () => {
+const dateFormatter = () => {
     return new Intl.DateTimeFormat( undefined, {
         year: '2-digit',
         month: 'long',
@@ -9,4 +9,4 @@ const dateFormater = () => {
     } ).format( new Date( Date.now() ) );
 };
 
-export default dateFormater;
+export default dateFormatter;
