@@ -2,7 +2,7 @@
 
 import addTasks from "./commands/addTasks.js";
 import deleteTask from "./commands/deleteTask.js";
-import { updateTaskStatus } from "./commands/editTask.js";
+import { updateTaskDescription, updateTaskStatus } from "./commands/editTask.js";
 import { readAllTasks } from "./commands/readTasks.js";
 import { Command } from "commander";
 
@@ -41,5 +41,11 @@ program
     .description( 'Mark task as done' )
     .argument( '[id]', 'Task ID' )
     .action( id => updateTaskStatus( id, 'done' ) );
+
+program
+    .command( 'update' )
+    .description( 'Update task description' )
+    .argument( '[id]', 'Task ID' )
+    .action( updateTaskDescription );
 
 program.parse();
