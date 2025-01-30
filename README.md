@@ -94,7 +94,7 @@ task-cli delete <task-id> # replace <task-id> with the id of the task
 ```bash
 task-cli <command> --help
 # Or
-task-cli <command> -h# replace <command> with any command to find out about the command usage
+task-cli <command> -h # replace <command> with any command to find out about the command usage
 
 task-cli --help
 # Or
