@@ -90,6 +90,19 @@ task-cli update <task-id> # replace <task-id> with the id of the task
 task-cli delete <task-id> # replace <task-id> with the id of the task
 ```
 
+- **Help**
+```bash
+task-cli <command> --help
+# Or
+task-cli <command> -h# replace <command> with any command to find out about the command usage
+
+task-cli --help
+# Or
+task-cli -h
+# Or
+task-cli # to get an overview of the tool
+```
+
 ### Sample JSON file
 ```JSON
 {
